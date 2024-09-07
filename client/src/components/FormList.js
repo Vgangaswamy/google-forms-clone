@@ -1,0 +1,49 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const FormList = () => {
+  const [forms, setForms] = useState([]);
+
+  useEffect(() => {
+    const fetchForms = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/forms');
+        setForms(response.data || []); // Ensure forms is an array
+      } catch (error) {
+        console.error('Error fetching forms:', error);
+        setForms([]); // Set to empty array in case of error
+      }
+    };
+
+    fetchForms();
+  }, []);
+
+  return (
+    <div>
+      <h2>Available Forms</h2>
+      {forms.length > 0 ? (
+        <ul>
+          {forms.map((form) => (
+            <li key={form._id}>
+              <h3>{form.title}</h3>
+              <p>{form.description}</p>
+              <ul>
+                {form.questions && form.questions.length > 0 ? (
+                  form.questions.map((question, index) => (
+                    <li key={index}>{question.questionText}</li>
+                  ))
+                ) : (
+                  <li>No questions available</li>
+                )}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No forms available</p>
+      )}
+    </div>
+  );
+};
+
+export default FormList;
