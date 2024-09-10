@@ -17,25 +17,29 @@ const SignIn = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log('Submitting login data:', formData);
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-      console.log('Login response:', res.data);
       localStorage.setItem('token', res.data.token);
   
-      toast.success('Login successful!', { position: "top-right" });
+      // Display success message
+      toast.success('Login successful!', {
+        position: "top-right",
+      });
   
+      // Update isAuthenticated state
       setTimeout(() => {
-        console.log('Redirecting to home page');
         navigate('/home');
+        window.location.reload(); // Force re-render of App.js
       }, 1500);
     } catch (error) {
-      console.error('Login error:', error.response?.data || error);
-      toast.error('Login failed. Invalid credentials.', { position: "top-right" });
+      toast.error('Login failed. Invalid credentials.', {
+        position: "top-right",
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
+  
   
 
   return (

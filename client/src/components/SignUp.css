@@ -1,56 +1,79 @@
-/* SignUp.css */
+body {
+  background-color:white; 
+}
 
 .signup-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgb(100, 130, 173, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  height: 45vh;
+}
+
+.signup-container h2 {
+  text-align: center;
+  color: black;
+  margin-bottom: 20px;
   
-  .signup-container h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .signup-container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .signup-container input {
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .signup-container button {
-    padding: 10px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .signup-container button:hover {
-    background-color: #45a049;
-  }
-  
-  .signup-container p {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .signup-container a {
-    color: #4caf50;
-    text-decoration: none;
-  }
-  
-  .signup-container a:hover {
-    text-decoration: underline;
-  }
-  
+}
+
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+  height: 28vh; 
+  background-color: rgb(127, 161, 195) ;
+}
+
+.signup-container input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 80%; /* Reduced the width of the input box */
+  align-self: center;
+}
+
+.signup-container input:first-of-type {
+  margin-top: 15px; /* Add margin/padding to the first input field */
+}
+
+
+.signup-container button {
+  padding: 10px;
+  background-color: #135D66;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%; 
+  max-width: 250px; /* Set a maximum width to prevent it from being too large */
+  align-self: center;
+  margin-top: 15px;
+}
+
+.signup-container button:hover {
+  background-color: #135D66;
+}
+
+.signup-container p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup-container a {
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.signup-container a:hover {
+  text-decoration: underline;
+}

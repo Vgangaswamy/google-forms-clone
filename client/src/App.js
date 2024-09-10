@@ -1,14 +1,19 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import CreateForm from './components/CreateForm';
 import FormList from './components/FormList';
+import './App.css';
 
 function App() {
-  // Simulating user authentication state with a token (in real app, use proper auth management)
-  const isAuthenticated = !!localStorage.getItem('token');
+  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
+
+  // useEffect to listen for changes in localStorage (e.g., when token is set)
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);  // Update the authentication state
+  }, []);
 
   console.log("Rendering App component. Authenticated:", isAuthenticated);
 
@@ -30,13 +35,28 @@ function App() {
   );
 }
 
-// HomePage component that displays forms
+// HomePage component that displays forms and SignOut button
 const HomePage = () => (
   <div>
     <h1>Welcome to the Forms Page</h1>
     <CreateForm />
     <FormList />
+    <SignOutButton /> {/* Add the SignOut button here */}
   </div>
 );
+
+// SignOut button component
+const SignOutButton = () => {
+  const handleSignOut = () => {
+    localStorage.removeItem('token'); // Remove token from localStorage
+    window.location.href = '/signin'; // Redirect to SignIn page after signout
+  };
+
+  return (
+    <button className="signout-btn" onClick={handleSignOut}>
+      Sign Out
+    </button>
+  );
+};
 
 export default App;
