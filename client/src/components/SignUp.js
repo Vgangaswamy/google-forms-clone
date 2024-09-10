@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './SignUp.css'; 
+import image1 from './image1.png'; 
 
 const SignUp = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
@@ -38,37 +39,45 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-container">
-      <ToastContainer />
-      <h2>Sign Up</h2>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={username}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={onChange}
-          required
-        />
-        <button type="submit" disabled={isSubmitting}>Register</button>
-      </form>
-      <p>Already registered? <a href="/signin">Sign In</a></p>
+    <div className="page-container">
+      {/* Image container */}
+      <div className="image-container">
+        <img src={require('./image1.png')} alt="Signup Illustration" className="signup-image" />
+      </div>
+
+      {/* Signup form */}
+      <div className="signup-container">
+        <ToastContainer />
+        <h2>Sign Up</h2>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={onChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={onChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={onChange}
+            required
+          />
+          <button type="submit" disabled={isSubmitting}>Register</button>
+        </form>
+        <p>Already registered? <a href="/signin">Sign In</a></p>
+      </div>
     </div>
   );
 };
