@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import CreateForm from './components/CreateForm';
-import FormList from './components/FormList';
 import './App.css';
 
 function App() {
@@ -40,7 +39,6 @@ const HomePage = () => (
   <div>
     <h1>Welcome to the Forms Page</h1>
     <CreateForm />
-    <FormList />
     <SignOutButton /> {/* Add the SignOut button here */}
   </div>
 );
