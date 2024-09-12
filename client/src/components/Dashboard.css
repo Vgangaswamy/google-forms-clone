@@ -1,0 +1,61 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .sidebar button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .sidebar button:hover {
+    background-color: #45a049;
+  }
+  
+  .sidebar button.active {
+    background-color: #45a049;
+  }
+  
+  .content {
+    flex: 1; /* Take up remaining space */
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Content section styles */
+  .content-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  h2, h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  

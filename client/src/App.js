@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import CreateForm from './components/CreateForm';
+import Dashboard from './components/Dashboard'; // Import the Dashboard component
 import './App.css';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
 
-  // useEffect to listen for changes in localStorage (e.g., when token is set)
+  // Listen for changes in localStorage when the token is set
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token);  // Update the authentication state
@@ -26,20 +27,24 @@ function App() {
           {/* SignIn page route */}
           <Route path="/signin" element={isAuthenticated ? <Navigate to="/home" /> : <SignIn />} />
 
-          {/* Home page route - accessible only if authenticated */}
+          {/* Home page route - displays forms and the dashboard */}
           <Route path="/home" element={isAuthenticated ? <HomePage /> : <Navigate to="/signin" />} />
+
+          {/* Dashboard route - user can navigate directly to the dashboard */}
+          <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/signin" />} />
         </Routes>
       </div>
     </Router>
   );
 }
 
-// HomePage component that displays forms and SignOut button
+// HomePage component that includes the Dashboard and CreateForm components
 const HomePage = () => (
   <div>
-    <h1>Welcome to the Forms Page</h1>
-    <CreateForm />
-    <SignOutButton /> {/* Add the SignOut button here */}
+    <h1>Welcome to Your Google forms Clone</h1>
+    <Dashboard /> {/* Add the Dashboard component */}
+    <CreateForm /> {/* Your existing CreateForm component */}
+    <SignOutButton /> {/* SignOut button */}
   </div>
 );
 
