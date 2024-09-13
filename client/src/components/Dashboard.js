@@ -3,10 +3,9 @@ import './Dashboard.css';
 import CreateForm from './CreateForm'; // Import the CreateForm component
 
 const Dashboard = () => {
-  const [activeSection, setActiveSection] = useState('overview'); // Tracks the active content section
+  const [activeSection, setActiveSection] = useState('create-form'); // Default to create form
 
-  // Placeholder data for user, forms, and responses
-  const user = { name: 'John Doe', email: 'john.doe@example.com', createdAt: new Date() };
+  // Placeholder data for forms and responses
   const recentForms = [{ _id: 1, title: 'Survey 1', description: 'A simple survey' }];
   const responseSummary = [{ formId: 1, formTitle: 'Survey 1', responseCount: 10 }];
 
@@ -15,10 +14,10 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className="sidebar">
         <button
-          className={activeSection === 'overview' ? 'active' : ''}
-          onClick={() => setActiveSection('overview')}
+          className={activeSection === 'create-form' ? 'active' : ''}
+          onClick={() => setActiveSection('create-form')}
         >
-          User Overview
+          Create Form
         </button>
         <button
           className={activeSection === 'forms' ? 'active' : ''}
@@ -32,31 +31,10 @@ const Dashboard = () => {
         >
           Response Summary
         </button>
-        <button
-          className={activeSection === 'create-form' ? 'active' : ''}
-          onClick={() => setActiveSection('create-form')}
-        >
-          Create Form
-        </button>
-        <button
-          className={activeSection === 'settings' ? 'active' : ''}
-          onClick={() => setActiveSection('settings')}
-        >
-          Settings
-        </button>
       </div>
 
       {/* Main content area */}
       <div className="content">
-        {activeSection === 'overview' && (
-          <div className="content-section user-overview">
-            <h2>User Overview</h2>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Account Created: {new Date(user.createdAt).toLocaleDateString()}</p>
-          </div>
-        )}
-
         {activeSection === 'forms' && (
           <div className="content-section recent-forms">
             <h3>Recent Forms</h3>
@@ -96,15 +74,7 @@ const Dashboard = () => {
         {activeSection === 'create-form' && (
           <div className="content-section">
             <h3>Create New Form</h3>
-            <CreateForm /> {/* Render the CreateForm component when this section is active */}
-          </div>
-        )}
-
-        {activeSection === 'settings' && (
-          <div className="content-section settings">
-            <h3>Settings</h3>
-            <button className="settings-btn">Account Settings</button>
-            <button className="settings-btn">Privacy Settings</button>
+            <CreateForm /> {/* Render the CreateForm component */}
           </div>
         )}
       </div>

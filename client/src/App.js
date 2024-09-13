@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import CreateForm from './components/CreateForm';
-import Dashboard from './components/Dashboard'; // Import the Dashboard component
+import Dashboard from './components/Dashboard';
+import Header from './components/Header'; // Import the Header component
 import './App.css';
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* If user is authenticated, display the header */}
+        {isAuthenticated && <Header />}  {/* Header will be displayed only when authenticated */}
+
         <Routes>
           {/* If user is authenticated, redirect to home, else show SignUp page */}
           <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <SignUp />} />
@@ -38,28 +42,11 @@ function App() {
   );
 }
 
-// HomePage component that includes the Dashboard and CreateForm components
+// HomePage component that includes the Dashboard
 const HomePage = () => (
   <div>
-    <h1>Welcome to Your Google forms Clone</h1>
     <Dashboard /> {/* Add the Dashboard component */}
-    <CreateForm /> {/* Your existing CreateForm component */}
-    <SignOutButton /> {/* SignOut button */}
   </div>
 );
-
-// SignOut button component
-const SignOutButton = () => {
-  const handleSignOut = () => {
-    localStorage.removeItem('token'); // Remove token from localStorage
-    window.location.href = '/signin'; // Redirect to SignIn page after signout
-  };
-
-  return (
-    <button className="signout-btn" onClick={handleSignOut}>
-      Sign Out
-    </button>
-  );
-};
 
 export default App;
