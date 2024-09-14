@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import CreateForm from './components/CreateForm';
+import FormList from './components/FormList';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header'; // Import the Header component
 import './App.css';
@@ -45,7 +46,7 @@ function App() {
 // HomePage component that includes the Dashboard
 const HomePage = () => (
   <div>
-    <Dashboard /> {/* Add the Dashboard component */}
+    <Dashboard/> {/* Add the Dashboard component */}
   </div>
 );
 

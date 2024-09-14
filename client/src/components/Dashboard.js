@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Dashboard.css';
-import CreateForm from './CreateForm'; // Import the CreateForm component
+import CreateForm from './CreateForm'; 
+import FormList from './components/FormList';
+
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('create-form'); // Default to create form
