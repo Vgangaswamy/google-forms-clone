@@ -1,0 +1,31 @@
+/* FormList.css */
+
+.form-list {
+    margin: 20px 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .form-list h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .form-list li {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-list h4 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .form-list p {
+    font-size: 16px;
+    color: #555;
+  }
+  

@@ -5,7 +5,7 @@ import SignIn from './components/SignIn';
 import CreateForm from './components/CreateForm';
 import FormList from './components/FormList';
 import Dashboard from './components/Dashboard';
-import Header from './components/Header'; // Import the Header component
+import Header from './components/Header';
 import './App.css';
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
 // HomePage component that includes the Dashboard
 const HomePage = () => (
   <div>
-    <Dashboard/> {/* Add the Dashboard component */}
+    <Dashboard/>
   </div>
 );
 

@@ -1,64 +1,45 @@
 import React, { useState } from 'react';
-import './Dashboard.css';
-import CreateForm from './CreateForm';
-import FormList from './FormList'; 
+import './Header.css'; 
+import logoImg from './image2.png'; // Importing the image
 
-const Dashboard = () => {
-  const [activeSection, setActiveSection] = useState('overview'); // Tracks the active content section
 
-  // Placeholder data for user, forms, and responses
-  const user = { name: 'John Doe', email: 'john.doe@example.com', createdAt: new Date() };
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/signin'; 
+  };
 
   return (
-    <div className="dashboard-container">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <button
-          className={activeSection === 'create-form' ? 'active' : ''}
-          onClick={() => setActiveSection('create-form')}
-        >
-          Create Form
-        </button>
-        <button
-          className={activeSection === 'overview' ? 'active' : ''}
-          onClick={() => setActiveSection('overview')}
-        >
-          User Overview
-        </button>
-        <button
-          className={activeSection === 'forms' ? 'active' : ''}
-          onClick={() => setActiveSection('forms')}
-        >
-          Recent Forms
-        </button>
+    <header className="header">
+      <div className="logo">
+        {/* Insert your image here */}
+        <img src={logoImg} alt="Logo" className="logo-img" /> {/* Using the imported image */}Forms
+      </div>
+      <div className="hamburger-menu" onClick={toggleMenu}>
+        ☰
       </div>
 
-      {/* Main content area */}
-      <div className="content">
-      {activeSection === 'create-form' && (
-          <div className="content-section">
-            <h3>Create New Form</h3>
-            <CreateForm /> {/* Render the CreateForm component when this section is active */}
+      {isMenuOpen && (
+        <div className="dropdown-menu">
+          <div className="user-profile">
+            <img src="/path-to-profile-pic.jpg" alt="User Profile" />
+            <span>John Doe</span>
           </div>
-        )}
-        {activeSection === 'overview' && (
-          <div className="content-section user-overview">
-            <h2>User Overview</h2>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Account Created: {new Date(user.createdAt).toLocaleDateString()}</p>
-          </div>
-        )}
-
-        {activeSection === 'forms' && (
-          <div className="content-section recent-forms">
-            <h3>Recent Forms</h3>
-            <FormList /> 
-          </div>
-        )}
-      </div>
-    </div>
+          <ul>
+            <li>Profile</li>
+            <li>Settings</li>
+            <li onClick={handleSignOut}>Sign Out</li>
+          </ul>
+        </div>
+      )}
+    </header>
   );
 };
 
-export default Dashboard;
+export default Header;

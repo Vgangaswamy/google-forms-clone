@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './FormList.css';
 
 const FormList = () => {
   const [forms, setForms] = useState([]);
@@ -19,24 +20,19 @@ const FormList = () => {
 
   return (
     <div>
-      <h2>Available Forms</h2>
-      {forms.length > 0 ? (
-        <ul>
-          {forms.map((form) => (
+      <h3>Recent Forms</h3>
+      <ul>
+        {forms.length > 0 ? (
+          forms.map((form) => (
             <li key={form._id}>
-              <h3>{form.title}</h3>
+              <h4>{form.title}</h4>
               <p>{form.description}</p>
-              <ul>
-                {form.questions.map((question, index) => (
-                  <li key={index}>{question.questionText}</li>
-                ))}
-              </ul>
             </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No forms available</p>
-      )}
+          ))
+        ) : (
+          <p>No recent forms available.</p>
+        )}
+      </ul>
     </div>
   );
 };
