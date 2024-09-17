@@ -6,6 +6,7 @@ import CreateForm from './components/CreateForm';
 import FormList from './components/FormList';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
+import PreviewForm from './components/PreviewForm';
 import './App.css';
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
 
           {/* Dashboard route - user can navigate directly to the dashboard */}
           <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/signin" />} />
+
+          {/* PreviewForm route */}
+          <Route path="/preview" element={<PreviewForm />} />
+
         </Routes>
       </div>
     </Router>
