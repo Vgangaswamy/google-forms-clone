@@ -7,7 +7,7 @@ import FormList from './components/FormList';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import PreviewForm from './components/PreviewForm';
-import FormResponse from './components/FormResponse'; // Import FormResponse
+import FormResponse from './components/formResponse'; 
 import './App.css';
 
 function App() {
