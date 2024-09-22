@@ -7,6 +7,7 @@ import FormList from './components/FormList';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import PreviewForm from './components/PreviewForm';
+import FormResponse from './components/FormResponse'; // Import FormResponse
 import './App.css';
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
           {/* PreviewForm route */}
           <Route path="/preview" element={<PreviewForm />} />
 
+          {/* Route for form response */}
+          <Route path="/forms/:formId" element={<FormResponse />} />
+
         </Routes>
       </div>
     </Router>
@@ -51,7 +55,7 @@ function App() {
 // HomePage component that includes the Dashboard
 const HomePage = () => (
   <div>
-    <Dashboard/>
+    <Dashboard />
   </div>
 );
 

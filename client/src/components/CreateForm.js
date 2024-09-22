@@ -3,26 +3,31 @@ import axios from 'axios';
 import './CreateForm.css';
 import { useNavigate } from 'react-router-dom';
 
-
 import previewIcon from './Icons/preview-icon.jpg';
 import shareIcon from './Icons/share-icon.jpg';
 import undoIcon from './Icons/undo-icon.jpg';
 import redoIcon from './Icons/redo-icon.jpg';
-
 
 const CreateForm = () => {
   const navigate = useNavigate(); 
   const [formTitle, setFormTitle] = useState('');
   const [formDescription, setFormDescription] = useState('');
   const [questions, setQuestions] = useState([{ questionText: '', questionType: 'text', options: [] }]);
+  const [newOption, setNewOption] = useState(''); // To handle adding options
   const [shareableLink, setShareableLink] = useState('');
-  
   const [undoStack, setUndoStack] = useState([]); // Stack for undo
   const [redoStack, setRedoStack] = useState([]); // Stack for redo
   
   const handleAddQuestion = () => {
     setQuestions([...questions, { questionText: '', questionType: 'text', options: [] }]);
     setUndoStack([...undoStack, questions]); // Add to undo stack
+  };
+
+  const handleAddOption = (index) => {
+    const newQuestions = [...questions];
+    newQuestions[index].options.push(newOption);
+    setQuestions(newQuestions);
+    setNewOption(''); // Clear option input field
   };
 
   const handleUndo = () => {
@@ -49,7 +54,6 @@ const CreateForm = () => {
 
   const handleShare = () => {
     if (shareableLink) {
-      console.log('Shareable link:', shareableLink);
       navigator.clipboard.writeText(shareableLink);
       alert('Shareable link copied to clipboard');
     } else {
@@ -67,7 +71,10 @@ const CreateForm = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/forms', newForm);
-      console.log('Form created:', response.data);
+      const formId = response.data._id;
+      const shareLink = `http://localhost:3000/forms/${formId}`;
+      setShareableLink(shareLink);
+      alert(`Form created successfully! Shareable link: ${shareLink}`);
     } catch (error) {
       console.error('Error creating form:', error);
     }
@@ -75,19 +82,18 @@ const CreateForm = () => {
 
   return (
     <div>
-      {/* Action buttons */}
       <div className="form-actions">
         <button className="preview-btn" onClick={handlePreview}>
-        <img src={previewIcon} alt="Preview" title="Preview" />
+          <img src={previewIcon} alt="Preview" title="Preview" />
         </button>
         <button onClick={handleShare}>
-        <img src={shareIcon} alt="Share" title="Share" />
+          <img src={shareIcon} alt="Share" title="Share" />
         </button>
         <button onClick={handleUndo} disabled={undoStack.length === 0}>
-        <img src={undoIcon} alt="Undo" title="Undo" />
+          <img src={undoIcon} alt="Undo" title="Undo" />
         </button>
         <button onClick={handleRedo} disabled={redoStack.length === 0}>
-        <img src={redoIcon} alt="Redo" title="Redo" />
+          <img src={redoIcon} alt="Redo" title="Redo" />
         </button>
       </div>
 
@@ -131,6 +137,25 @@ const CreateForm = () => {
               <option value="multiple-choice">Multiple Choice</option>
               <option value="checkbox">Checkbox</option>
             </select>
+            
+            {/* Add input for options for multiple-choice and checkbox */}
+            {question.questionType !== 'text' && (
+              <div>
+                <input
+                  type="text"
+                  placeholder="Add option"
+                  value={newOption}
+                  onChange={(e) => setNewOption(e.target.value)}
+                />
+                <button type="button" onClick={() => handleAddOption(index)}>Add Option</button>
+                
+                <ul>
+                  {question.options.map((option, optionIndex) => (
+                    <li key={optionIndex}>{option}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
         <button type="button" onClick={handleAddQuestion}>
@@ -138,6 +163,14 @@ const CreateForm = () => {
         </button>
         <button type="submit">Create Form</button>
       </form>
+
+      {shareableLink && (
+        <div>
+          <h4>Shareable Link:</h4>
+          <p>{shareableLink}</p>
+          <button onClick={handleShare}>Copy Link to Clipboard</button>
+        </div>
+      )}
     </div>
   );
 };
