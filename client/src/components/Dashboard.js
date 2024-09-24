@@ -4,7 +4,7 @@ import CreateForm from './CreateForm';
 import FormList from './FormList';  // Import FormList
 
 const Dashboard = () => {
-  const [activeSection, setActiveSection] = useState('create-form'); // Default to create form
+  const [activeSection, setActiveSection] = useState('welcome'); // Default to welcome page
 
   return (
     <div className="dashboard-container">
@@ -32,6 +32,15 @@ const Dashboard = () => {
 
       {/* Main content area */}
       <div className="content">
+        {/* Welcome section */}
+        {activeSection === 'welcome' && (
+          <div className="content-section welcome-section">
+            <h2>Welcome to the Forms Dashboard</h2>
+            <p>Click "Create Form" to begin creating your own form or explore recent forms and responses.</p>
+            <img src="path/to/your/image.jpg" alt="Welcome" className="welcome-image" />
+          </div>
+        )}
+
         {activeSection === 'forms' && (
           <div className="content-section recent-forms">
             <FormList /> {/* Render the FormList component */}

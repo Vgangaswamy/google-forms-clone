@@ -1,9 +1,24 @@
 form {
   background-color: #f9f9f9;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make form fill the width of the content */
+  max-width: 1200px; /* Set a maximum width for the form */
+  margin: 0 auto; /* Center the form */
 }
+
+.form-container {
+  width: 100%;
+  max-width: 1200px; /* Limit the maximum width */
+  margin: 0 auto; /* Center the container */
+  padding: 40px; /* Add padding */
+  background-color: #fff; /* Set the background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  border-radius: 10px; /* Rounded corners */
+  min-height: 70vh; /* Ensure the container takes up at least 70% of the viewport height */
+}
+
 
 input, select {
   margin-bottom: 10px;
@@ -11,6 +26,7 @@ input, select {
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box; /* Ensure padding doesn't exceed width */
 }
 
 button {
@@ -26,25 +42,57 @@ button:hover {
   background-color: #218838;
 }
 
-.form-actions {
+.form-actions_content {
   display: flex;
-  gap: 10px;
+  gap: 20px; /* Increased gap between buttons */
   margin-bottom: 20px;
   justify-content: flex-end; 
 }
 
-.form-actions button {
+.form-actions_content button {
   background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.form-actions button img {
-  width: 30px;
-  height: 30px;
+.form-actions_content button img {
+  width: 24px;
+  height: 24px;
+  margin: 0 5px; /* Add small margin to ensure better spacing around each icon */
 }
 
 .preview-btn img {
-  width: 65px !important;
-  height: 65px !important;
+  width: 24px !important;
+  height: 24px !important;
+}
+
+button:focus {
+  outline: none; 
+}
+
+/* Ensure the form takes up space within the content section */
+.content {
+  width: 100%; /* Ensure content takes up full width */
+  max-width: 1200px; /* Limit max width to prevent it from being too large on big screens */
+  padding: 40px; /* Add padding around the content area */
+  background-color: #fff; /* Set a background color */
+  margin: 20px auto; /* Center the content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  border-radius: 10px; /* Round the corners */
+  min-height: 70vh; /* Ensure content takes up at least 70% of the viewport height */
+}
+
+/* Add some responsiveness to the content */
+@media (max-width: 768px) {
+  .content {
+    padding: 20px;
+  }
+
+  form {
+    padding: 15px;
+  }
 }

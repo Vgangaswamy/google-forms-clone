@@ -20,11 +20,11 @@ const FormResponse = () => {
     };
 
     if (formId) {
-      fetchForm(); // Fetch the form if formId is available
+      fetchForm(); 
     }
-  }, [formId]); // Only run this effect when formId changes
+  }, [formId]); 
 
-  // Handle changes to form inputs
+  
   const handleInputChange = (questionId, answer) => {
     setAnswers({
       ...answers,
@@ -32,7 +32,6 @@ const FormResponse = () => {
     });
   };
 
-  // Submit the user's answers
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

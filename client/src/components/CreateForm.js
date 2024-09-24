@@ -81,8 +81,8 @@ const CreateForm = () => {
   };
 
   return (
-    <div>
-      <div className="form-actions">
+    <div className="form-container"> {/* Added form-container class for the wrapper */}
+      <div className="form-actions_content">
         <button className="preview-btn" onClick={handlePreview}>
           <img src={previewIcon} alt="Preview" title="Preview" />
         </button>
